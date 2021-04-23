@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: app
+    build: .
+    depends_on:
+      - db_psql
+    volumes:
+      - ./:/app
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+
+  db_psql:
+    container_name: db_psql
+    restart: always
+    image: postgres:12.0-alpine
+    env_file:
+        - ./.env
+    volumes:
+      - db_psql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "log_statement=all"]
+
+volumes:
+  db_psql:
+    name: db_psql

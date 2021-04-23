@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pydantic[dotenv]
+tzlocal
+python-dateutil
+psycopg2
+pytz
